@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Menú desplegable</title>
+    <style>
+        /* Estilos para el menú */
+        .menu {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f2f2f2;
+            padding: 10px;
+            width: 200px;
+        }
+
+        .menu a {
+            color: #333;
+            text-decoration: none;
+            padding: 10px;
+        }
+
+        .menu a:hover {
+            background-color: #ddd;
+        }
+
+        /* Estilos para el menú desplegable */
+        .submenu {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f2f2f2;
+            padding: 10px;
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 200px;
+            z-index: 1;
+        }
+
+        .menu:hover .submenu {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu">
+        <a href="#">Inicio</a>
+        <div class="submenu">
+            <a href="#">Submenú 1.1</a>
+            <a href="#">Submenú 1.2</a>
+        </div>
+        <a href="#">Apartado 2</a>
+        <a href="#">Apartado 3</a>
+        <div class="submenu">
+            <a href="#">Submenú 3.1</a>
+            <a href="#">Submenú 3.2</a>
+            <a href="#">Submenú 3.3</a>
+        </div>
+        <a href="#">Apartado 4</a>
+    </div>
+</body>
+
+</html>

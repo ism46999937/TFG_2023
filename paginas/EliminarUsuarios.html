@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Eliminar Usuario</title>
+	<link rel="stylesheet" href="../css/menu.css">
+	<style>
+		form {
+			width: 50%;
+			margin: auto;
+		}
+
+		label {
+			display: block;
+			margin-bottom: 10px;
+		}
+
+		input[type="text"] {
+			width: 100%;
+			padding: 12px;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			box-sizing: border-box;
+			margin-bottom: 10px;
+		}
+
+		input[type="submit"] {
+			background-color: #f44336;
+			color: white;
+			padding: 12px 20px;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+		}
+
+		input[type="submit"]:hover {
+			background-color: #d32f2f;
+		}
+	</style>
+</head>
+
+<body>
+
+	<nav>
+		<ul>
+			<li><a href="../PHP/ListaUsuarios.php">Mostrar lista de usuarios</a></li>
+			<li><a href="AgregarUsuarios.html">Agregar usuario</a></li>
+			<li><a href="#">Editar usuario</a></li>
+			<li><a href="EliminarUsuarios.html">Eliminar usuario</a></li>
+			<li><a href="../PHP/ListaMedicamentos.php">Medicamentos</a></li>
+			<li><a href="../PHP/GenerarDocumento.php">Generar Documento</a></li>
+			<li><a href="../index.html">Salir</a></li>
+		</ul>
+	</nav>
+	<h1>Eliminar Usuario</h1>
+	<form>
+		<label for="id">ID del Usuario:</label>
+		<input type="text" id="id" name="id" required>
+
+		<input type="submit" value="Eliminar">
+	</form>
+</body>
+
+</html>
