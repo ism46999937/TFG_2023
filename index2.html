@@ -4,34 +4,38 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
+	    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
+        <link rel="stylesheet" href="./bootstrap-4.0.0-dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="./css/estilos.css">
         <title>Login</title>
     </head>
     <body>
         <div class="bloqueLogin">
-            <div class="LoginForm">
+            <div class="LoginForm rounded">
                     <H2>Login Form</H2>
             </div>
-           <div class="formularioCredenciales">
+           <div class="formularioCredenciales rounded">
                 <form action="./PHP/Login.php" method="post">
+                    <br>
                     <div class="credencialesForm">
                         <label for="usuario">
                             <img src="./images/usuario_login.png" alt="usuario" width="20px" height="20px">
                         </label>
-                        <input type="text" id="username" name="username" value=""><br>
+                        <input type="text" id="username" name="username" value="" class="border border-success rounded"><br>
                         <label for="password">
                             <img src="./images/password.png" alt="password" width="20px" height="20px">
                         </label>
-                        <input type="password" id="password" name="password" value=""><br>
+                        <input type="password" id="password" name="password" value="" class="border border-success rounded"><br>
                         <label for="estaRegistrado">Contraseña o usuario incorrectos<br></label>
                         <a href="./reset.php">Has olvidado la contraseña?</a>
                     </div>
                     <div class="loginDivButton">
-                        <button type="submit" value="Submit">LOGIN</button>
+                        <button class="btn-primary rounded" type="submit" value="Submit">LOGIN</button>
                     </div>
                     <div class="registroDivButton">
                         <label for="estaRegistrado">No está registrado/a?</label>
-                        <button type="button">Registrarse</button>
+                        <button class="btn-light rounded" type="button">Registrarse</button>
                     </div>
                 </form>
             </div>

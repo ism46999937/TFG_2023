@@ -24,3 +24,7 @@ window.onclick = function(event) {
   }
 }
 
+function irdatabase() {
+  location.href="../PHP/database.php";
+  
+}
