@@ -1,4 +1,4 @@
-/*use TFG_Grupo15;
+use TFG_Grupo15;
 DROP DATABASE TFG_Grupo15;
 create database if not exists TFG_Grupo15;
 use TFG_Grupo15;
@@ -366,6 +366,6 @@ INSERT INTO Recetas (Nombre,DNIPaciente, Nombre_Medicamento, CodigodeBarrasMed,D
 	JOIN Medicamentos m ON m.ID = 22
 	WHERE p.ID =20;
 CALL insertar_numeros_aleatorios3();   
-*/
+
 use TFG_Grupo15;
 select * from Temporal;
