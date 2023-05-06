@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Agregar Medicamentos</title>
+    <link rel="stylesheet" href="../css/menu.css">
+    <style>
+        form {
+            width: 50%;
+            margin: auto;
+        }
+
+        label {
+            display: inline-block;
+            width: 150px;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="../PHP/ListaUsuarios.php">Mostrar lista de usuarios</a></li>
+            <li><a href="AgregarUsuarios.html">Agregar usuario</a></li>
+            <li><a href="../PHP/ListaMedicamentos.php">Medicamentos</a></li>
+            <li><a href="../paginas/DNIPaciente.html">Generar Receta</a></li>
+            <li><a href="../PHP/ListaParafarmacia.php">Parafarmacia</a></li>
+            <li><a href="../index.html">Salir</a></li>
+        </ul>
+    </nav>
+    <h1>Agregar medicamento</h1>
+    <form method="post" action="../PHP/AgregarMedicamentos.php.php">
+        <label for="nombre_medicamento">Nombre del medicamento:</label>
+        <input type="text" id="nombre_medicamento" name="nombre_medicamento" required>
+        <br>
+        <label for="ingredientes">Ingredientes:</label>
+        <input type="text" id="ingredientes" name="ingredientes" required>
+        <br>
+        <label for="tipo_medicamento">Tipo de medicamento:</label>
+        <input type="text" id="tipo_medicamento" name="tipo_medicamento" required>
+        <br>
+        <label for="dosis_recomendada">Dosis recomendada:</label>
+        <input type="text" id="dosis_recomendada" name="dosis_recomendada" required>
+        <br>
+        <label for="efectos_secundarios">Efectos secundarios:</label>
+        <input type="text" id="efectos_secundarios" name="efectos_secundarios" required>
+        <br>
+        <label for="contraindicaciones">Contraindicaciones:</label>
+        <input type="text" id="contraindicaciones" name="contraindicaciones" required>
+        <br>
+        <label for="codigo_barras">Codigo de barras:</label>
+        <input type="number" id="codigo_barras" name="codigo_barras" required>
+        <br>
+        <button type="submit">Agregar medicamento</button>
+    </form>
+</body>
+
+</html>

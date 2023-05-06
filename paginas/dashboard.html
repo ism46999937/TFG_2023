@@ -1,239 +1,241 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./estilos2.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
-	  <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
-    <title>Dashboard</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./estilos2.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
+  <title>Dashboard</title>
 </head>
 <div class="">
-    
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
-        <!-- Logo Proyecto -->
-        <a href="index3.html" class="brand-link">
-          <img src="../images/posible_logo.svg" alt="FarmaLogo" class="brand-image img-circle elevation-3"
-               style="opacity: .8">
-          <span class="brand-text font-weight-light col-md-2">ADMINISTRADOR</span>
-        </a>
-      
-        <!-- Sidebar -->
-        <div class="sidebar">
-          <!-- Sidebar user panel (optional) -->
-          <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
-              <img src="../images/usuario_login.svg" class="img-circle elevation-2" alt="User Image">
-            </div>
-            <div class="info">
-              <a href="#" class="d-block col-md-2">USUARIO X</a>
-            </div>
-          </div>
-      
-          <!-- Sidebar Menu -->
-          <nav class="mt-2">
-            <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
-              <!-- Add icons to the links using the .nav-icon class
+
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Logo Proyecto -->
+    <a href="Menuinterno.html" class="brand-link">
+      <img src="../images/posible_logo.png" alt="FarmaLogo" class="brand-image img-circle elevation-3"
+        style="opacity: .8">
+      <span class="brand-text font-weight-light col-md-2">ADMINISTRADOR</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="../images/usuario_login.svg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block col-md-2">USUARIO X</a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+          <!-- Add icons to the links using the .nav-icon class
                    with font-awesome or any other icon font library -->
-              <li class="nav-item menu-open">
-                <a href="#" class="nav-link active">
-                  <i class="nav-icon fas fa-tachometer-alt"></i>
-                  <p>
-                    PAGINA PRINCIPAL
-                    <i class="right fas fa-angle-left"></i>
-                  </p>
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                PAGINA PRINCIPAL
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p onclick="irdatabase()">Pagina1</p>
                 </a>
-                <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p onclick="irdatabase()">Pagina1</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="far fa-circle nav-icon"></i>
-                      <p>Pagina2</p>
-                    </a>
-                  </li>
-                </ul>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="nav-icon fas fa-th"></i>
-                  <p>
-                    Nueva
-                    <span class="right badge badge-danger">New</span>
-                  </p>
-                </a>
-              </li>
-
-              <li id="bottom">
                   <i class="far fa-circle nav-icon"></i>
-                  <button class="btn bg-danger rounded" id="logout">Salir</button>
+                  <p>Pagina2</p>
                 </a>
               </li>
             </ul>
-          </nav>
-          <!-- /.sidebar-menu -->
-        </div>
-        <!-- /.sidebar -->
-      </aside>
-    <div class="container">
-        <div id="barra_lateral" class="sidebar-dark">
-            
-            <div id="dashboard">
-                DASHBOARD
-                <div id="dashboard_arriba" class="row">
-                    <div class="col-md-3">
-                        <div class="card card-danger">
-                            <div class="card-header">
-                              <h3 class="card-title">Default Card Example</h3>
-                              <div class="card-tools">
-                                <!-- Buttons, labels, and many other things can be placed here! -->
-                                <!-- Here is a label for example -->
-                                <span class="badge badge-primary">Label</span>
-                              </div>
-                              <!-- /.card-tools -->
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                              The body of the card
-                            </div>
-                            <!-- /.card-body -->
-                            <div class="card-footer">
-                              The footer of the card
-                            </div>
-                            <!-- /.card-footer -->
-                        </div>
-                        <!-- /.card -->
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card card-warning">
-                            <div class="card-header">
-                              <h3 class="card-title">Default Card Example</h3>
-                              <div class="card-tools">
-                                <!-- Buttons, labels, and many other things can be placed here! -->
-                                <!-- Aqui label for example -->
-                                <span class="badge badge-primary">Label</span>
-                              </div>
-                              <!-- /.card-tools -->
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                              The body of the card
-                            </div>
-                            <!-- /.card-body -->
-                            <div class="card-footer">
-                              The footer of the card
-                            </div>
-                            <!-- /.card-footer -->
-                        </div>
-                        <!-- /.card -->
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card card-green">
-                            <div class="card-header">
-                              <h3 class="card-title">Default Card Example</h3>
-                              <div class="card-tools">
-                                <!-- Buttons, labels, and y cosas aqui! -->
-                                <!-- Aqui label for example -->
-                                <span class="badge badge-primary">Label</span>
-                              </div>
-                              <!-- /.card-tools -->
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                              The body of the card
-                            </div>
-                            <!-- /.card-body -->
-                            <div class="card-footer">
-                              The footer of the card
-                            </div>
-                            <!-- /.card-footer -->
-                        </div>
-                        <!-- /.card -->
-                    </div>
-                    <div class="col-md-3">
-                        <div class="card card-navy">
-                            <div class="card-header">
-                              <h3 class="card-title">Default Card Example</h3>
-                              <div class="card-tools">
-                                <!-- Buttons, labels, and many other things can be placed here! -->
-                                <!-- Here is a label for example -->
-                                <span class="badge badge-primary">Label</span>
-                              </div>
-                              <!-- /.card-tools -->
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body">
-                              The body of the card
-                            </div>
-                            <!-- /.card-body -->
-                            <div class="card-footer">
-                              The footer of the card
-                            </div>
-                            <!-- /.card-footer -->
-                        </div>
-                        <!-- /.card -->
-                    </div>
-                </div>
-                <div id="dashboard_abajo" class="row">
-                    <div class="col-md-8">
-                      <div class="small-box bg-gradient-success">
-                        <div class="inner">
-                          <h3>44</h3>
-                          <p>Registros Usuarios</p>
-                        </div>
-                        <div class="icon">
-                          <i class="fas fa-user-plus"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">
-                          Mas info <i class="fas fa-arrow-circle-right"></i>
-                        </a>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="small-box bg-info">
-                        <div class="inner">
-                          <h3>150</h3>
-                          <p>Nuevos Pedidos</p>
-                        </div>
-                        <div class="icon">
-                          <i class="fas fa-shopping-cart"></i>
-                        </div>
-                        <a href="#" class="small-box-footer">
-                          Mas info <i class="fas fa-arrow-circle-right"></i>
-                        </a>
-                      </div>
-                    </div>
-                </div>
-                    <div id="dashboard_abajo2" class="row">
-                      <div class="col-md-8">
-                        <div class="small-box">
-                          <div class="inner">
-                            ALGUNA COSA
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="small-box">
-                          <div class="inner">
-                            ALGUNA COSA
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-            </div>
-        </div>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Nueva
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+
+          <li id="bottom">
+            <i class="far fa-circle nav-icon"></i>
+            <button class="btn bg-danger rounded" id="logout">Salir</button>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
     </div>
-</body>
-<style>
-  #bottom{
-    margin-top: 50%;
-    margin-left: 30%;
-    bottom: 0;
-  }
-</style>
+    <!-- /.sidebar -->
+  </aside>
+  <div class="container">
+    <div id="barra_lateral" class="sidebar-dark">
+
+      <div id="dashboard">
+        DASHBOARD
+        <div id="dashboard_arriba" class="row">
+          <div class="col-md-3">
+            <div class="card card-danger">
+              <div class="card-header">
+                <h3 class="card-title">Default Card Example</h3>
+                <div class="card-tools">
+                  <!-- Buttons, labels, and many other things can be placed here! -->
+                  <!-- Here is a label for example -->
+                  <span class="badge badge-primary">Label</span>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                The body of the card
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                The footer of the card
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <div class="col-md-3">
+            <div class="card card-warning">
+              <div class="card-header">
+                <h3 class="card-title">Default Card Example</h3>
+                <div class="card-tools">
+                  <!-- Buttons, labels, and many other things can be placed here! -->
+                  <!-- Aqui label for example -->
+                  <span class="badge badge-primary">Label</span>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                The body of the card
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                The footer of the card
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <div class="col-md-3">
+            <div class="card card-green">
+              <div class="card-header">
+                <h3 class="card-title">Default Card Example</h3>
+                <div class="card-tools">
+                  <!-- Buttons, labels, and y cosas aqui! -->
+                  <!-- Aqui label for example -->
+                  <span class="badge badge-primary">Label</span>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                The body of the card
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                The footer of the card
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <div class="col-md-3">
+            <div class="card card-navy">
+              <div class="card-header">
+                <h3 class="card-title">Default Card Example</h3>
+                <div class="card-tools">
+                  <!-- Buttons, labels, and many other things can be placed here! -->
+                  <!-- Here is a label for example -->
+                  <span class="badge badge-primary">Label</span>
+                </div>
+                <!-- /.card-tools -->
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                The body of the card
+              </div>
+              <!-- /.card-body -->
+              <div class="card-footer">
+                The footer of the card
+              </div>
+              <!-- /.card-footer -->
+            </div>
+            <!-- /.card -->
+          </div>
+        </div>
+        <div id="dashboard_abajo" class="row">
+          <div class="col-md-8">
+            <div class="small-box bg-gradient-success">
+              <div class="inner">
+                <h3>44</h3>
+                <p>Registros Usuarios</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-user-plus"></i>
+              </div>
+              <a href="#" class="small-box-footer">
+                Mas info <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>150</h3>
+                <p>Nuevos Pedidos</p>
+              </div>
+              <div class="icon">
+                <i class="fas fa-shopping-cart"></i>
+              </div>
+              <a href="#" class="small-box-footer">
+                Mas info <i class="fas fa-arrow-circle-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div id="dashboard_abajo2" class="row">
+          <div class="col-md-8">
+            <div class="small-box">
+              <div class="inner">
+                ALGUNA COSA
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="small-box">
+              <div class="inner">
+                ALGUNA COSA
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </body>
+  <style>
+    #bottom {
+      margin-top: 50%;
+      margin-left: 30%;
+      bottom: 0;
+    }
+  </style>
+
 </html>

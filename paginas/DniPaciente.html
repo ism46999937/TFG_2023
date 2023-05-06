@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Consulta de recetas medicas</title>
+    <link rel="stylesheet" href="../css/menu.css">
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="../PHP/ListaUsuarios.php">Mostrar lista de usuarios</a></li>
+            <li><a href="AgregarUsuarios.html">Agregar usuario</a></li>
+            <li><a href="../PHP/ListaMedicamentos.php">Medicamentos</a></li>
+            <li><a href="../paginas/DNIPaciente.html">Generar Receta</a></li>
+            <li><a href="../PHP/ListaParafarmacia.php">Parafarmacia</a></li>
+            <li><a href="../index.html">Salir</a></li>
+        </ul>
+    </nav>
+    <h1>Consulta de recetas medicas</h1>
+    <form method="post" action="../PHP/Paciente.php">
+        <label for="dni_paciente">Ingrese el DNI del paciente:</label>
+        <input type="text" id="dni_paciente" name="dni_paciente" required>
+        <button type="submit">Consultar</button>
+    </form>
+</body>
+
+</html>

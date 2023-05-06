@@ -1,4 +1,21 @@
-#logout{
+#logout {
     align-items: end;
     justify-content: end;
+}
+
+.button {
+    padding: 8px 16px;
+    background-color: green;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: green;
+}
+
+.button:active {
+    background-color: #005cbf;
 }
