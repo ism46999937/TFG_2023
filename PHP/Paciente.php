@@ -3,6 +3,7 @@ echo ('<!DOCTYPE html>
 <html>
 
 <head>
+<link rel="shortcut icon" href="../images/posible_logo.png" />
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -74,75 +75,97 @@ echo ('<!DOCTYPE html>
 </head>
 
 <body>
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <!-- Logo Proyecto -->
-    <a href="../paginas/Menuinterno.html" class="brand-link">
-      <img src="../images/posible_logo.png" alt="FarmaLogo" class="brand-image img-circle elevation-3"
-        style="opacity: .8">
-      <span class="brand-text font-weight-light col-md-2">ADMINISTRADOR</span>
-    </a>
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-    <!-- Sidebar -->
-    <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-23 mb-3 d-flex">
-        <div class="image">
-          <img src="../images/usuario_login.svg" class="img-circle elevation-2" alt="User Image">
-        </div>
-        <div class="info">
-          <a href="#" class="d-block col-md-2">USUARIO X</a>
-        </div>
-      </div>
+<!-- Logo Proyecto -->
+<a href="Menuinterno.html" class="brand-link">
+  <img src="../images/posible_logo.png" alt="FarmaLogo" class="brand-image img-circle elevation-3"
+    style="opacity: .8">
+  <span class="brand-text font-weight-light col-md-2">ADMINISTRADOR</span>
+</a>
 
-      <!-- Sidebar Menu -->
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
-          <!-- Add icons to the links using the .nav-icon class
-                   with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                PAGINA PRINCIPAL
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-            <!--<ul class="nav nav-treeview">-->
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p onclick="irdatabase()">Pagina1</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="..\PHP\ListaUsuarios.php" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p onclick="irdatabase()">Lista Usuarios</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p onclick="irdatabase()">Pagina1</p>
-            </a>
-          </li>
+<!-- Sidebar -->
+<div class="sidebar">
+  <!-- Sidebar user panel (optional) -->
+  <div class="user-panel mt-3 pb-23 mb-3 d-flex">
+    <div class="image">
+      <img src="../images/usuario_login.png" class="img-circle elevation-2" alt="User Image">
+    </div>
+    <div class="info">
+      <a href="#" class="d-block col-md-2">USUARIO X</a>
+    </div>
+  </div>
 
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p>Pagina2</p>
-            </a>
-          </li>
-          <!--</ul>-->
-          </li>
-          <li class="nav-item">
-            <a href="Generarpdf.php" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Generar Documento del paciente
-              </p>
-            </a>
-          </li>
+  <!-- Sidebar Menu -->
+  <nav class="mt-2">
+    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+      <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+      <li class="nav-item menu-open">
+        <a href="../paginas/Menuinterno.html" class="nav-link active">
+          <i class="nav-icon fas fa-tachometer-alt"></i>
+          <p>
+            Menu principal
+            <i class="right fas fa-angle-left"></i>
+          </p>
+        </a>
+        <!--<ul class="nav nav-treeview">-->
+      <li class="nav-item">
+        <a href="..\PHP\ListaMedicamentos.php" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p onclick="irdatabase()">Lista Medicamentos</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="../paginas/Agregarmedicamento.html" class="nav-link">
+          <i class="nav-icon fas fa-th"></i>
+          <p>
+            Agregar Medicamento
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="..\PHP\ListaUsuarios.php" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p onclick="irdatabase()">Lista Usuarios</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="../paginas/Agregarmedicamento.html" class="nav-link">
+          <i class="nav-icon fas fa-th"></i>
+          <p>
+            Agregar Usuario
+          </p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="../paginas/DniPaciente.html" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p onclick="irdatabase()">Paciente</p>
+        </a>
+      </li>
+
+      <li class="nav-item">
+      <a href="../PHP/Generarpdf.php" class="nav-link">
+        <i class="far fa-circle nav-icon"></i>
+        <p onclick="irdatabase()">Generar Documento Paciente</p>
+      </a>
+    </li>
+
+      <li class="nav-item">
+        <a href="..\PHP\Parafarmacia.php" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p>Listado de Parafarmacia</p>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="../paginas/AgregarmedicamentoPara.html" class="nav-link">
+          <i class="nav-icon fas fa-th"></i>
+          <p>
+            Agregar Medicamento Parafarmacia
+          </p>
+        </a>
+      </li>
 
           <li id="bottom">
             <i class="far fa-circle nav-icon"></i>

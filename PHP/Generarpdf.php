@@ -1,4 +1,5 @@
 <?php
+
 	require 'fpdf/fpdf.php';
 	include 'Barcode.php';
 
@@ -51,5 +52,4 @@
     
     }
 	$pdf->Output();	
-	
 ?>
