@@ -33,14 +33,11 @@ $sql = "CREATE TABLE Temporal (
   )";
 
 if (mysqli_query($conexion, $sql)) {
-    echo "Tabla creada correctamente.";
-  } else {
-    echo "Error al crear la tabla: " . mysqli_error($conexion);
+ } else {
   }
 if (mysqli_query($conexion, "insert into Temporal (id, Nombre, DNIPaciente,Nombre_Medicamento,CodigodeBarrasMed, Dosis_recomendada, CodigodeBarrasReceta) 
   VALUES ($id, '$Nom', '$DNI', '$N_MED', '$CBMED', '$Dosis', '$CBRE')")) 
   {
-  echo ("Datos Agregados correctamente");
-} else {
-  echo "Error al Introducir Datos:".mysqli_error($conexion);
+  } else {
+
 }

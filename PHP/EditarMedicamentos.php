@@ -158,6 +158,7 @@
           </p>
         </a>
       </li>
+
           <li id="bottom">
             <i class="far fa-circle nav-icon"></i>
             <button class="btn bg-danger rounded" id="logout">Salir</button>
@@ -217,102 +218,41 @@
 echo('<br>');
 echo('<br>');
 echo('<br>');
+// Establecer conexión con la base de datos
 $conexion = mysqli_connect("localhost", "root", "root", "TFG_Grupo15");
 
-if(isset($_POST['Añadir_MedicamentO'])){
-
-  $id = $_POST["ID"];
-  $Nom = $_POST["Nombre"];
-  $DNI = $_POST["DNIPaciente"];
-  $N_MED = $_POST["Nombre_Medicamento"];
-  $CBMED = $_POST["CodigodeBarrasMed"];
-  $Dosis = $_POST["Dosis_recomendada"];
-  $CBRE = $_POST["CodigodeBarrasReceta"];
-  
-  // Validar los datos
-  if (empty($id) || empty($Nom) || empty($DNI) || empty($N_MED) || empty($CBMED) || empty($Dosis) || empty($CBRE)) {
-    die("Todos los campos son obligatorios.");
-  }
-  
-  //Aqui creamos la tabla donde vamos a guardar la información temporalmente.
-  
-  $sql = "CREATE TABLE Temporal (
-      id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-      Nombre varchar (255),
-      DNIPaciente varchar (255),
-      Nombre_Medicamento varchar (255),
-      CodigodeBarrasMed BIGINT,
-      Dosis_recomendada varchar (255),
-      CodigodeBarrasReceta BIGINT
-    )";
-  
-  if (mysqli_query($conexion, $sql)) {
-   } else {
-    }
-  if (mysqli_query($conexion, "insert into Temporal (id, Nombre, DNIPaciente,Nombre_Medicamento,CodigodeBarrasMed, Dosis_recomendada, CodigodeBarrasReceta) 
-    VALUES ($id, '$Nom', '$DNI', '$N_MED', '$CBMED', '$Dosis', '$CBRE')")) 
-    {
-    } else {
-  
-  }
-  // Imprimir la tabla de usuarios
-  $conexion = mysqli_connect("localhost", "root", "root", "TFG_Grupo15");
-  $dni_paciente = $_POST['dni_paciente'];
-  $result = mysqli_query($conexion, "select * FROM Recetas WHERE DNIPaciente = '$dni_paciente'");
-  if (mysqli_num_rows($result) > 0) {
-      echo    " <style>
-          table {
-              border-collapse: collapse;
-              width: 80%;
-              margin: auto;
-          }
-  
-          th,
-          td {
-              text-align: left;
-              padding: 8px;
-              border-bottom: 1px solid #ddd;
-          }
-  
-          th {
-              background-color: #4CAF50;
-              color: white;
-          } 
-      </style>";
-      echo "<table>";
-      echo "<tr><th>ID</th><th>Nombre</th><th>DNIPaciente</th><th>Nombre_Medicamento</th><th>CodigodeBarrasMed</th><th>Dosis_recomendada</th><th>CodigodeBarrasReceta</th><th>Añadir</th></tr>";
-      while($row = mysqli_fetch_assoc($result)) {
-          echo "<tr><td>" . $row["ID"] . "</td>"."<td>" . $row["Nombre"] . "</td>"."<td>" . $row["DNIPaciente"] . "</td>"."<td>" . $row["Nombre_Medicamento"] . "</td>".
-          "<td>" . '<img src="Barcode2.php?text='.$row["CodigodeBarrasMed"].'&size=50&orientation=horizontal&codetype=Code39&print=true">' . "</td>"."<td>" . $row["Dosis_recomendada"] . "</td>"."<td>" .'<img src="Barcode2.php?text='.$row["CodigodeBarrasReceta"].'&size=50&orientation=horizontal&codetype=Code39&print=true">' . "</td>"."<td>"
-  
-          .'<form method="POST">
-            <input type="hidden" name="ID" value='.$row["ID"].'>
-            <input type="hidden" name="Nombre" value='.$row["Nombre"].'>
-            <input type="hidden" name="DNIPaciente" value='.$row["DNIPaciente"].'>
-            <input type="hidden" name="Nombre_Medicamento" value='.$row["Nombre_Medicamento"].'>
-            <input type="hidden" name="CodigodeBarrasMed" value='.$row["CodigodeBarrasMed"].'>
-            <input type="hidden" name="Dosis_recomendada" value='.$row["Dosis_recomendada"].'>
-            <input type="hidden" name="CodigodeBarrasReceta" value='. $row["CodigodeBarrasReceta"].'>
-            <button type="submit" name="Añadir_MedicamentO" id="BotonAñadir">Añadir al documento</button>
-            <input type="checkbox">
-          </form>'."</td>"."</tr>";
-      }
-      echo "</table>";
-  }
-  // Cerrar la conexión a la base de datos
-  mysqli_close($conexion);
-  }
+if (!$conexion) {
+    die("Conexión fallida: " . mysqli_connect_error());
+}
 
 
-// Consulta para obtener los usuarios
-$dni_paciente = $_POST['dni_paciente'];
-$result = mysqli_query($conexion, "select * FROM Recetas WHERE DNIPaciente = '$dni_paciente'");
-// Imprimir la tabla de usuarios
-if (mysqli_num_rows($result) > 0) {
-    echo    " <style>
+// Obtener información de los usuarios de la tabla
+$sql = "SELECT * FROM Medicamentos";
+$result = mysqli_query($conexion, $sql);
+
+// Actualizar información de un usuario si se ha enviado el formulario de edición
+if(isset($_POST['editar_medicamento'])){
+    $ID = $_POST ['ID']; 
+    $Nombre_Medicamento = $_POST ['Nombre_Medicamento'];
+    $Ingredientes = $_POST ['Ingredientes'];
+    $Tipo_medicamento = $_POST ['Tipo_medicamento'];
+    $Dosis_recomendada = $_POST ['Dosis_recomendada'];
+    $EfectosSecundarios = $_POST ['EfectosSecundarios'];
+    $Contraindicaciones = $_POST ['Contraindicaciones'];
+    $CodigodeBarrasMed = $_POST ['CodigodeBarrasMed'];
+
+    $sql = "UPDATE Medicamentos SET Nombre_Medicamento='$Nombre_Medicamento', Ingredientes='$Ingredientes', Tipo_medicamento='$Tipo_medicamento', Dosis_recomendada='$Dosis_recomendada', EfectosSecundarios='$EfectosSecundarios',
+     Contraindicaciones='$Contraindicaciones' WHERE ID='$ID'";
+    $result = mysqli_query($conexion, $sql);
+    header('Location: ListaMedicamentos.php');
+}
+
+// Mostrar información de los usuarios en una tabla
+echo "<table>";
+echo    " <style>
         table {
             border-collapse: collapse;
-            width: 80%;
+            width: auto;
             margin: auto;
         }
 
@@ -328,26 +268,23 @@ if (mysqli_num_rows($result) > 0) {
             color: white;
         } 
     </style>";
-    echo "<table>";
-    echo "<tr><th>ID</th><th>Nombre</th><th>DNIPaciente</th><th>Nombre_Medicamento</th><th>CodigodeBarrasMed</th><th>Dosis_recomendada</th><th>CodigodeBarrasReceta</th><th>Añadir</th></tr>";
-    while($row = mysqli_fetch_assoc($result)) {
-        echo "<tr><td>" . $row["ID"] . "</td>"."<td>" . $row["Nombre"] . "</td>"."<td>" . $row["DNIPaciente"] . "</td>"."<td>" . $row["Nombre_Medicamento"] . "</td>".
-        "<td>" . '<img src="Barcode2.php?text='.$row["CodigodeBarrasMed"].'&size=50&orientation=horizontal&codetype=Code39&print=true">' . "</td>"."<td>" . $row["Dosis_recomendada"] . "</td>"."<td>" .'<img src="Barcode2.php?text='.$row["CodigodeBarrasReceta"].'&size=50&orientation=horizontal&codetype=Code39&print=true">' . "</td>"."<td>"
-
-        .'<form method="POST">
-          <input type="hidden" name="ID" value='.$row["ID"].'>
-          <input type="hidden" name="Nombre" value='.$row["Nombre"].'>
-          <input type="hidden" name="DNIPaciente" value='.$row["DNIPaciente"].'>
-          <input type="hidden" name="Nombre_Medicamento" value='.$row["Nombre_Medicamento"].'>
-          <input type="hidden" name="CodigodeBarrasMed" value='.$row["CodigodeBarrasMed"].'>
-          <input type="hidden" name="Dosis_recomendada" value='.$row["Dosis_recomendada"].'>
-          <input type="hidden" name="CodigodeBarrasReceta" value='. $row["CodigodeBarrasReceta"].'>
-          <button type="submit" name="Añadir_MedicamentO" id="BotonAñadir">Añadir al documento</button>
-          <input type="checkbox">
-        </form>'."</td>"."</tr>";
-    }
-    echo "</table>";
+echo "<tr><tr><th>Farmaco</th><th>Principio Activo</th><th>Accion de medicamento</th><th>Dosis recomendada</th><th>Efectos Secundarios</th><th>Contra indicaciones</th><th>Editar Medicamento</th></tr>";
+while($row = mysqli_fetch_assoc($result)) {
+    echo "<form method='POST'>";
+    echo "<tr>";
+    echo "<td>" . $row['Nombre_Medicamento'] . "<input type='hidden' name='id' value='" . $row['Nombre_Medicamento'] . "'></td>";
+    echo "<td><input type='text' name='Ingredientes' value='" . $row['Ingredientes'] . "'></td>";
+    echo "<td><input type='text' name='Tipo_medicamento' value='" . $row['Tipo_medicamento'] . "'></td>";
+    echo "<td><input type='text' name='Dosis_recomendada' value='" . $row['Dosis_recomendada'] . "'></td>";
+    echo "<td><input type='text' name='EfectosSecundarios' value='" . $row['EfectosSecundarios'] . "'></td>";
+    echo "<td><input type='text' name='Contraindicaciones' value='" . $row['Contraindicaciones'] . "'></td>";
+    echo "<td><input type='submit' name='editar_medicamento' value='Editar'></td>";
+    echo "</tr>";
+    echo "</form>";
 }
-// Cerrar la conexión a la base de datos
-?>
+echo "</table>";
 
+// Cerrar conexión con la base de datos
+mysqli_close($conexion);
+
+?>

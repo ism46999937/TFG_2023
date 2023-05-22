@@ -215,6 +215,7 @@
 </style>
 
 </html>;
+
 <?php
 $conexion = mysqli_connect("localhost", "root", "root", "TFG_Grupo15");
 // Consulta para obtener los usuarios
@@ -245,7 +246,7 @@ if (mysqli_num_rows($result) > 0) {
     echo "<button class= 'button'><a href='../paginas/AgregarMedicamentos.html'>Agregar Medicamento</a></button>";
     echo('<br>');    echo('<br>');    echo('<br>');
     echo "<table>";
-    echo "<tr><th>ID</th><th>Farmaco</th><th>Principio Activo</th><th>Accion de medicamento</th><th>Dosis recomendada</th><th>Efectos Secundarios</th><th>Contra indicaciones</th><th>Codigo de Barras</th><th>Eliminar Medicamento</th></tr>";
+    echo "<tr><th>ID</th><th>Farmaco</th><th>Principio Activo</th><th>Accion de medicamento</th><th>Dosis recomendada</th><th>Efectos Secundarios</th><th>Contra indicaciones</th><th>Codigo de Barras</th><th>Eliminar Medicamento</th><th><button class='button'><a href='EditarMedicamentos.php'>Editar Medicamentos</a></button></th></tr>";
     while($row = mysqli_fetch_assoc($result)) {
         echo "<tr><td>" . $row["ID"] . "</td>"."<td>" . $row["Nombre_Medicamento"] . "</td>"."<td>" . $row["Ingredientes"] . "</td>"."<td>" . $row["Tipo_medicamento"] . "</td>".
         "<td>" . $row["Dosis_recomendada"] . "</td>"."<td>" . $row["EfectosSecundarios"] . "</td>"."<td>" . $row["Contraindicaciones"] .
