@@ -19,3 +19,7 @@
 .button:active {
     background-color: #005cbf;
 }
+
+*{
+    box-sizing: border-box;
+}

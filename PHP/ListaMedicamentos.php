@@ -27,6 +27,7 @@ echo ('<!DOCTYPE html>
   <!-- summernote -->
   <link rel="stylesheet" href="../../AdminLTE-3.2.0/plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="./estilos2.css">
+  <link rel="stylesheet" href="../estilos2.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
   <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
 

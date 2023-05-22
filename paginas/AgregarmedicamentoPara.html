@@ -136,11 +136,11 @@
 
             <!-- Sidebar Menu -->
             <nav class="mt-2">
-                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+                <ul class="nav nav-pills nav-sidebar-dark-primary flex-column" data-widget="treeview" role="menu">
                     <!-- Add icons to the links using the .nav-icon class
                        with font-awesome or any other icon font library -->
                     <li class="nav-item menu-open">
-                        <a href="../paginas/Menuinterno.html" class="nav-link active">
+                        <a href="../paginas/Menuinterno.html" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Menu principal
@@ -234,8 +234,6 @@
 <script src="../plugins/daterangepicker/daterangepicker.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
-<!-- Summernote -->
-<script src="../plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
 <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
@@ -244,6 +242,8 @@
 <script src="../../AdminLTE-3.2.0/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../AdminLTE-3.2.0/dist/js/pages/dashboard.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
+<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
 <style>
     #bottom {
         margin-top: 50%;
@@ -274,7 +274,7 @@
         <label for="CodigodeBarrasPar">Codigo de barras:</label>
         <input type="number" id="CodigodeBarrasPar" name="CodigodeBarrasPar" required>
         <br>
-        <button type="submit">Agregar medicamento</button>
+        <button type="submit" class="btn-primary">Agregar medicamento</button>
     </form>
 </div>
 </body>
