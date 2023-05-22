@@ -28,3 +28,7 @@ function irdatabase() {
   location.href="../PHP/database.php";
   
 }
+
+function salir(){
+  location.href="../index.html";
+}
