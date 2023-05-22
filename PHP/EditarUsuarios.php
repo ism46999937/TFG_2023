@@ -1,6 +1,4 @@
-<?php
-
-echo ('<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -215,8 +213,8 @@ echo ('<!DOCTYPE html>
   }
 </style>
 
-</html>');
-
+</html>;
+<?php
 echo('<br>');
 echo('<br>');
 echo('<br>');

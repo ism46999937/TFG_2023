@@ -1,5 +1,4 @@
-<?php
-echo ('<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -215,7 +214,8 @@ echo ('<!DOCTYPE html>
   }
 </style>
 
-</html>');
+</html>;
+<?php
 $conexion = mysqli_connect("localhost", "root", "root", "TFG_Grupo15");
 // Consulta para obtener los usuarios
 $result = mysqli_query($conexion, "select * from Medicamentos");
