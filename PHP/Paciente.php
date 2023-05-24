@@ -145,6 +145,13 @@
       </li>
 
       <li class="nav-item">
+        <a href="../PHP/Generarpdf.php" class="nav-link">
+          <i class="far fa-circle nav-icon"></i>
+          <p onclick="irdatabase()">GenerarPDF</p>
+        </a>
+      </li>
+
+      <li class="nav-item">
         <a href="..\PHP\Parafarmacia.php" class="nav-link">
           <i class="far fa-circle nav-icon"></i>
           <p>Listado de Parafarmacia</p>
@@ -219,6 +226,7 @@ echo('<br>');
 echo('<br>');
 $conexion = mysqli_connect("localhost", "root", "root", "TFG_Grupo15");
 
+
 if(isset($_POST['Añadir_MedicamentO'])){
 
   $id = $_POST["ID"];
@@ -228,6 +236,7 @@ if(isset($_POST['Añadir_MedicamentO'])){
   $CBMED = $_POST["CodigodeBarrasMed"];
   $Dosis = $_POST["Dosis_recomendada"];
   $CBRE = $_POST["CodigodeBarrasReceta"];
+  $dni_paciente= $_GET["id"];
   
   // Validar los datos
   if (empty($id) || empty($Nom) || empty($DNI) || empty($N_MED) || empty($CBMED) || empty($Dosis) || empty($CBRE)) {
@@ -236,13 +245,13 @@ if(isset($_POST['Añadir_MedicamentO'])){
   
   //Aqui creamos la tabla donde vamos a guardar la información temporalmente.
   
-  $sql = "CREATE TABLE Temporal (
+  $sql = "CREATE TABLE  Temporal (
       id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
       Nombre varchar (255),
       DNIPaciente varchar (255),
       Nombre_Medicamento varchar (255),
       CodigodeBarrasMed BIGINT,
-      Dosis_recomendada varchar (255),
+      Dosis_recomendada varchar (255),   
       CodigodeBarrasReceta BIGINT
     )";
   
@@ -257,7 +266,7 @@ if(isset($_POST['Añadir_MedicamentO'])){
   }
   // Imprimir la tabla de usuarios
   $conexion = mysqli_connect("localhost", "root", "root", "TFG_Grupo15");
-  $dni_paciente = $_POST['dni_paciente'];
+  $dni_paciente = $_GET['id'];
   $result = mysqli_query($conexion, "select * FROM Recetas WHERE DNIPaciente = '$dni_paciente'");
   if (mysqli_num_rows($result) > 0) {
       echo    " <style>
@@ -280,12 +289,12 @@ if(isset($_POST['Añadir_MedicamentO'])){
           } 
       </style>";
       echo "<table>";
-      echo "<tr><th>ID</th><th>Nombre</th><th>DNIPaciente</th><th>Nombre_Medicamento</th><th>CodigodeBarrasMed</th><th>Dosis_recomendada</th><th>CodigodeBarrasReceta</th><th>Añadir</th></tr>";
+      echo "<tr><th>ID</th><th>Nombre</th><th>DNIPaciente</th><th>Nombre_Medicamento</th><th>CodigodeBarrasMed</th><th>Dosis_recomendada</th><th>CodigodeBarrasReceta</th><th>Añadir</th><th>Eliminar</th></tr>";
       while($row = mysqli_fetch_assoc($result)) {
           echo "<tr><td>" . $row["ID"] . "</td>"."<td>" . $row["Nombre"] . "</td>"."<td>" . $row["DNIPaciente"] . "</td>"."<td>" . $row["Nombre_Medicamento"] . "</td>".
           "<td>" . '<img src="Barcode2.php?text='.$row["CodigodeBarrasMed"].'&size=50&orientation=horizontal&codetype=Code39&print=true">' . "</td>"."<td>" . $row["Dosis_recomendada"] . "</td>"."<td>" .'<img src="Barcode2.php?text='.$row["CodigodeBarrasReceta"].'&size=50&orientation=horizontal&codetype=Code39&print=true">' . "</td>"."<td>"
   
-          .'<form method="POST">
+          .'<form method="POST" action="../PHP/Paciente.php?id='.$dni_paciente.'&id2='. $row["ID"] .'" >
             <input type="hidden" name="ID" value='.$row["ID"].'>
             <input type="hidden" name="Nombre" value='.$row["Nombre"].'>
             <input type="hidden" name="DNIPaciente" value='.$row["DNIPaciente"].'>
@@ -293,16 +302,106 @@ if(isset($_POST['Añadir_MedicamentO'])){
             <input type="hidden" name="CodigodeBarrasMed" value='.$row["CodigodeBarrasMed"].'>
             <input type="hidden" name="Dosis_recomendada" value='.$row["Dosis_recomendada"].'>
             <input type="hidden" name="CodigodeBarrasReceta" value='. $row["CodigodeBarrasReceta"].'>
-            <button type="submit" name="Añadir_MedicamentO" id="BotonAñadir">Añadir al documento</button>
-            <input type="checkbox">
-          </form>'."</td>"."</tr>";
+            <script>
+            function mostrarAlerta() {
+              alert("Se ha añadido correctamente el dato a la tabla.");
+            }
+            function marcarCheckbox() {
+              var checkbox = document.getElementById("myCheckbox");
+              checkbox.checked = true;
+            }
+            
+            function desmarcarCheckbox() {
+              var checkbox = document.getElementById("myCheckbox");
+              checkbox.checked = false;
+            }
+            function añadir() {
+              mostrarAlerta();
+              marcarCheckbox();
+            }
+          </script>
+            <button type="submit" name="Añadir_MedicamentO" id="BotonAñadir" onclick="añadir()">Añadir al documento</button>
+            <td><button type="submit" name="eliminarRegistro" id="BotonAñadir onclick="desmarcarCheckbox()">Eliminar del Documento</button></td>
+            </form>'."</td>"."</tr>";
       }
       echo "</table>";
   }
-  // Cerrar la conexión a la base de datos
-  mysqli_close($conexion);
   }
 
+  if(isset($_POST['eliminarRegistro'])){
+    // Obtener el ID del registro a eliminar
+    $dni_paciente = $_GET['id2'];
+  
+    // Ejecutar la consulta
+    if (mysqli_query($conexion, "delete from Temporal where id = '$dni_paciente'")) {
+      echo '<script>alert("Se ha eliminado correctamente el registro de la tabla Temporal.");</script>';
+    } else {
+      echo '<script>alert("Error al eliminar el registro.");</script>';
+    }
+
+    $dni_paciente = $_GET['id'];
+    $result = mysqli_query($conexion, "select * FROM Recetas WHERE DNIPaciente = '$dni_paciente'");
+    // Imprimir la tabla de usuarios
+    if (mysqli_num_rows($result) > 0) {
+        echo    " <style>
+            table {
+                border-collapse: collapse;
+                width: 80%;
+                margin: auto;
+            }
+
+            th,
+            td {
+                text-align: left;
+                padding: 8px;
+                border-bottom: 1px solid #ddd;
+            }
+
+            th {
+                background-color: #4CAF50;
+                color: white;
+            } 
+        </style>";
+        echo "<table>";
+        echo "<tr><th>ID</th><th>Nombre</th><th>DNIPaciente</th><th>Nombre_Medicamento</th><th>CodigodeBarrasMed</th><th>Dosis_recomendada</th><th>CodigodeBarrasReceta</th><th>Añadir</th><th>Eliminar</th></tr>";
+        while($row = mysqli_fetch_assoc($result)) {
+            echo "<tr><td>" . $row["ID"] . "</td>"."<td>" . $row["Nombre"] . "</td>"."<td>" . $row["DNIPaciente"] . "</td>"."<td>" . $row["Nombre_Medicamento"] . "</td>".
+            "<td>" . '<img src="Barcode2.php?text='.$row["CodigodeBarrasMed"].'&size=50&orientation=horizontal&codetype=Code39&print=true">' . "</td>"."<td>" . $row["Dosis_recomendada"] . "</td>"."<td>" .'<img src="Barcode2.php?text='.$row["CodigodeBarrasReceta"].'&size=50&orientation=horizontal&codetype=Code39&print=true">' . "</td>"."<td>"
+
+            .'<form method="POST" action="../PHP/Paciente.php?id='.$dni_paciente.'&id2='. $row["ID"] .'"" >
+              <input type="hidden" name="ID" value='.$row["ID"].'>
+              <input type="hidden" name="Nombre" value='.$row["Nombre"].'>
+              <input type="hidden" name="DNIPaciente" value='.$row["DNIPaciente"].'>
+              <input type="hidden" name="Nombre_Medicamento" value='.$row["Nombre_Medicamento"].'>
+              <input type="hidden" name="CodigodeBarrasMed" value='.$row["CodigodeBarrasMed"].'>
+              <input type="hidden" name="Dosis_recomendada" value='.$row["Dosis_recomendada"].'>
+              <input type="hidden" name="CodigodeBarrasReceta" value='. $row["CodigodeBarrasReceta"].'>
+              <script>
+              function mostrarAlerta() {
+                alert("Se ha añadido correctamente el dato a la tabla.");
+              }
+              function marcarCheckbox() {
+                var checkbox = document.getElementById("myCheckbox");
+                checkbox.checked = true;
+              }
+              
+              function desmarcarCheckbox() {
+                var checkbox = document.getElementById("myCheckbox");
+                checkbox.checked = false;
+              }
+              function añadir() {
+                mostrarAlerta();
+                marcarCheckbox();
+              }
+            </script>
+              <button type="submit" name="Añadir_MedicamentO" id="BotonAñadir" onclick="añadir()">Añadir al documento</button>
+              <td><button type="submit" name="eliminarRegistro" id="BotonAñadir onclick="desmarcarCheckbox()">Eliminar del Documento</button></td>
+
+             </form>'."</td>"."</tr>";
+        }
+        echo "</table>";
+}
+  }
 
 // Consulta para obtener los usuarios
 $dni_paciente = $_POST['dni_paciente'];
@@ -329,12 +428,12 @@ if (mysqli_num_rows($result) > 0) {
         } 
     </style>";
     echo "<table>";
-    echo "<tr><th>ID</th><th>Nombre</th><th>DNIPaciente</th><th>Nombre_Medicamento</th><th>CodigodeBarrasMed</th><th>Dosis_recomendada</th><th>CodigodeBarrasReceta</th><th>Añadir</th></tr>";
+    echo "<tr><th>ID</th><th>Nombre</th><th>DNIPaciente</th><th>Nombre_Medicamento</th><th>CodigodeBarrasMed</th><th>Dosis_recomendada</th><th>CodigodeBarrasReceta</th><th>Añadir</th><th>Eliminar</th></tr>";
     while($row = mysqli_fetch_assoc($result)) {
         echo "<tr><td>" . $row["ID"] . "</td>"."<td>" . $row["Nombre"] . "</td>"."<td>" . $row["DNIPaciente"] . "</td>"."<td>" . $row["Nombre_Medicamento"] . "</td>".
         "<td>" . '<img src="Barcode2.php?text='.$row["CodigodeBarrasMed"].'&size=50&orientation=horizontal&codetype=Code39&print=true">' . "</td>"."<td>" . $row["Dosis_recomendada"] . "</td>"."<td>" .'<img src="Barcode2.php?text='.$row["CodigodeBarrasReceta"].'&size=50&orientation=horizontal&codetype=Code39&print=true">' . "</td>"."<td>"
 
-        .'<form method="POST">
+        .'<form method="POST" action="../PHP/Paciente.php?id='.$dni_paciente .'&id2='. $row["ID"] .'" >
           <input type="hidden" name="ID" value='.$row["ID"].'>
           <input type="hidden" name="Nombre" value='.$row["Nombre"].'>
           <input type="hidden" name="DNIPaciente" value='.$row["DNIPaciente"].'>
@@ -342,8 +441,26 @@ if (mysqli_num_rows($result) > 0) {
           <input type="hidden" name="CodigodeBarrasMed" value='.$row["CodigodeBarrasMed"].'>
           <input type="hidden" name="Dosis_recomendada" value='.$row["Dosis_recomendada"].'>
           <input type="hidden" name="CodigodeBarrasReceta" value='. $row["CodigodeBarrasReceta"].'>
-          <button type="submit" name="Añadir_MedicamentO" id="BotonAñadir">Añadir al documento</button>
-          <input type="checkbox">
+          <script>
+            function mostrarAlerta() {
+              alert("Se ha añadido correctamente el dato a la tabla.");
+            }
+          function marcarCheckbox() {
+            var checkbox = document.getElementById("myCheckbox");
+            checkbox.checked = true;
+          }
+          
+          function desmarcarCheckbox() {
+            var checkbox = document.getElementById("myCheckbox");
+            checkbox.checked = false;
+          }
+          function añadir() {
+            mostrarAlerta();
+            marcarCheckbox();
+          }
+        </script>
+          <button type="submit" name="Añadir_MedicamentO" id="BotonAñadir" onclick="añadir()">Añadir al documento</button>
+          <td><button type="submit" name="eliminarRegistro" id="BotonAñadir onclick="desmarcarCheckbox()">Eliminar del Documento</button></td>
         </form>'."</td>"."</tr>";
     }
     echo "</table>";
