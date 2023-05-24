@@ -26,7 +26,7 @@
   <!-- summernote -->
   <link rel="stylesheet" href="../../AdminLTE-3.2.0/plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="./estilos2.css">
-  <link rel="stylesheet" href="../estilos2.css">
+  <link rel="stylesheet" href="../paginas/estilos2.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
   <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
 
@@ -245,7 +245,7 @@ if (mysqli_num_rows($result) > 0) {
     echo('<br>');
     echo "<button class= 'button'><a href='../paginas/AgregarMedicamentos.html'>Agregar Medicamento</a></button>";
     echo('<br>');    echo('<br>');    echo('<br>');
-    echo "<table>";
+    echo "<table class='lista'>";
     echo "<tr><th>ID</th><th>Farmaco</th><th>Principio Activo</th><th>Accion de medicamento</th><th>Dosis recomendada</th><th>Efectos Secundarios</th><th>Contra indicaciones</th><th>Codigo de Barras</th><th>Eliminar Medicamento</th><th><button class='button'><a href='EditarMedicamentos.php'>Editar Medicamentos</a></button></th></tr>";
     while($row = mysqli_fetch_assoc($result)) {
         echo "<tr><td>" . $row["ID"] . "</td>"."<td>" . $row["Nombre_Medicamento"] . "</td>"."<td>" . $row["Ingredientes"] . "</td>"."<td>" . $row["Tipo_medicamento"] . "</td>".

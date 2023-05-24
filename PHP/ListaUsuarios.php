@@ -26,6 +26,7 @@
   <!-- summernote -->
   <link rel="stylesheet" href="../../AdminLTE-3.2.0/plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="./estilos2.css">
+  <link rel="stylesheet" href="../paginas/estilos2.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
   <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
 
@@ -244,7 +245,7 @@ if (mysqli_num_rows($result) > 0) {
             color: white;
         } 
     </style>";
-    echo "<table>";
+    echo "<table class='lista'>";
     echo "<tr><th>ID</th><th>Nombre</th><th>Correo electrónico</th><th>pass</th><th>Eliminar</th><th><button class='button'><a href='EditarUsuarios.php'>Editar Usuarios</a></button></th></tr>";
     while($row = mysqli_fetch_assoc($result)) {
         echo "<tr><td>" . $row["id_usuario"] . "</td><td>" . $row["nombre"] . "</td><td>" . $row["email"] . "</td><td>" . $row["pass"] . "</td>".
