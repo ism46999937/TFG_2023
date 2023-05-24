@@ -26,6 +26,7 @@
   <!-- summernote -->
   <link rel="stylesheet" href="../../AdminLTE-3.2.0/plugins/summernote/summernote-bs4.min.css">
   <link rel="stylesheet" href="./estilos2.css">
+  <link rel="stylesheet" href="../paginas/estilos2.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
   <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
 
@@ -68,23 +69,47 @@
       color: black;
     }
   </style>
-  <link rel="stylesheet" href="../plugins/bootstrap/js/bootstrap.min.js">
-  <link rel="stylesheet" href="../bootstrap-4.0.0-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../plugins/bootstrap/js/bootstrap.min.js">
+  <link rel="stylesheet" href="../../bootstrap-4.0.0-dist/css/bootstrap.min.css">
   <title>Menú de usuarios</title>
 </head>
 
-<body>
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<body onload="mostrarNombreUsuario()">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-<!-- Logo Proyecto -->
-<a href="Menuinterno.html" class="brand-link">
-  <img src="../images/posible_logo.png" alt="FarmaLogo" class="brand-image img-circle elevation-3"
-    style="opacity: .8">
-  <span class="brand-text font-weight-light col-md-2">ADMINISTRADOR</span>
-</a>
+    <!-- Logo Proyecto -->
+    <a href="../../paginas/MenuinternoUser.php" class="brand-link">
+      <img src="../../images/posible_logo.png" alt="FarmaLogo" class="brand-image img-circle elevation-3"
+        style="opacity: .8">
+      <span class="brand-text font-weight-light col-md-2">PharmaApp</span>
+    </a>
 
-<!-- Sidebar -->
-<div class="sidebar">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-23 mb-3 d-flex">
+        <div class="image">
+          <img src="../../images/usuario_login.png" class="img-circle elevation-2" alt="User Image">
+        </div>
+
+        <script>
+          function obtenerNombreUsuario() {
+            var nombreUsuario = "<?php session_start(); echo $_SESSION['username']; ?>"; // Obtener el nombre de usuario de la sesión en PHP
+            return nombreUsuario;
+          }
+          function mostrarNombreUsuario() {
+            var nombreUsuario = obtenerNombreUsuario();
+            var elementoNombreUsuario = document.getElementById("nombre-usuario");
+            elementoNombreUsuario.innerText = nombreUsuario;
+          }
+
+        </script>
+
+        <div class="info">
+          <a href="#" class="d-block col-md-2"> <span id="nombre-usuario"></span></a>
+
+        </div>
+      </div>
 
   <!-- Sidebar Menu -->
   <nav class="mt-2">
@@ -92,7 +117,7 @@
       <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
       <li class="nav-item menu-open">
-        <a href="../paginas/Menuinterno.html" class="nav-link active">
+        <a href="../../paginas/MenuinternoUser.php" class="nav-link active">
           <i class="nav-icon fas fa-tachometer-alt"></i>
           <p>
             Menu principal
@@ -101,54 +126,26 @@
         </a>
         <!--<ul class="nav nav-treeview">-->
       <li class="nav-item">
-        <a href="..\PHP\ListaMedicamentos.php" class="nav-link">
+        <a href="ListaMedicamentos.php" class="nav-link">
           <i class="far fa-circle nav-icon"></i>
           <p onclick="irdatabase()">Lista Medicamentos</p>
         </a>
       </li>
+      
       <li class="nav-item">
-        <a href="../paginas/Agregarmedicamento.html" class="nav-link">
-          <i class="nav-icon fas fa-th"></i>
-          <p>
-            Agregar Medicamento
-          </p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="..\PHP\ListaUsuarios.php" class="nav-link">
-          <i class="far fa-circle nav-icon"></i>
-          <p onclick="irdatabase()">Lista Usuarios</p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="../paginas/AgregarUsuarios.html" class="nav-link">
-          <i class="nav-icon fas fa-th"></i>
-          <p>
-            Agregar Usuario
-          </p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="../paginas/DniPaciente.html" class="nav-link">
+        <a href="../../paginas/DniPacienteUSER.php" class="nav-link">
           <i class="far fa-circle nav-icon"></i>
           <p onclick="irdatabase()">Paciente</p>
         </a>
       </li>
 
       <li class="nav-item">
-        <a href="..\PHP\Parafarmacia.php" class="nav-link">
+        <a href="Parafarmacia.php" class="nav-link">
           <i class="far fa-circle nav-icon"></i>
           <p>Listado de Parafarmacia</p>
         </a>
       </li>
-      <li class="nav-item">
-        <a href="../paginas/AgregarmedicamentoPara.html" class="nav-link">
-          <i class="nav-icon fas fa-th"></i>
-          <p>
-            Agregar Medicamento Parafarmacia
-          </p>
-        </a>
-      </li>
+
 
           <li id="bottom">
             <i class="far fa-circle nav-icon"></i>
@@ -205,41 +202,18 @@
 </style>
 
 </html>;
+
 <?php
-echo('<br>');
-echo('<br>');
-echo('<br>');
-// Establecer conexión con la base de datos
 $conexion = mysqli_connect("localhost", "root", "root", "TFG_Grupo15");
+// Consulta para obtener los usuarios
+$result = mysqli_query($conexion, "select * from Medicamentos");
 
-if (!$conexion) {
-    die("Conexión fallida: " . mysqli_connect_error());
-}
-
-
-// Obtener información de los usuarios de la tabla
-$sql = "SELECT * FROM usuario";
-$result = mysqli_query($conexion, $sql);
-
-// Actualizar información de un usuario si se ha enviado el formulario de edición
-if(isset($_POST['editar_usuario'])){
-    $id = $_POST['id'];
-    $nombre = $_POST['nombre'];
-    $pass = $_POST['pass'];
-    $email = $_POST['email'];
-    $tipo_usuario = $_POST['tipo_usuario'];
-    
-    $sql = "UPDATE usuario SET nombre='$nombre', pass='$pass', email='$email', tipo_usuario='$tipo_usuario' WHERE id_usuario='$id'";
-    $result = mysqli_query($conexion, $sql);
-    header('Location: ListaUsuarios.php');
-}
-
-// Mostrar información de los usuarios en una tabla
-echo "<table>";
-echo    " <style>
+// Imprimir la tabla de usuarios
+if (mysqli_num_rows($result) > 0) {
+    echo    " <style>
         table {
             border-collapse: collapse;
-            width: auto;
+            width: 80%;
             margin: auto;
         }
 
@@ -255,25 +229,22 @@ echo    " <style>
             color: white;
         } 
     </style>";
-echo "<tr><th>ID</th><th>Nombre</th><th>Contraseña</th><th>Email</th><th>Tipo de Usuario</th><th></th></tr>";
-while($row = mysqli_fetch_assoc($result)) {
-    echo "<form method='POST'>";
-    echo "<tr>";
-    echo "<td>" . $row['id_usuario'] . "<input type='hidden' name='id' value='" . $row['id_usuario'] . "'></td>";
-    echo "<td><input type='text' name='nombre' value='" . $row['nombre'] . "'></td>";
-    echo "<td><input type='password' name='pass' value='" . $row['pass'] . "'></td>";
-    echo "<td><input type='email' name='email' value='" . $row['email'] . "'></td>";
-    echo "<td><select name='tipo_usuario'>
-            <option value='1'" . ($row['tipo_usuario'] == 1 ? 'selected' : '') . ">Administrador</option>
-            <option value='2'" . ($row['tipo_usuario'] == 2 ? 'selected' : '') . ">Usuario</option>
-          </select></td>";
-    echo "<td><input type='submit' name='editar_usuario' value='Editar'></td>";
-    echo "</tr>";
-    echo "</form>";
+    echo('<br>');
+    echo "<button class= 'button'><a href='../paginas/AgregarMedicamentos.html'>Agregar Medicamento</a></button>";
+    echo('<br>');    echo('<br>');    echo('<br>');
+    echo "<table class='lista'>";
+    echo "<tr><th>ID</th><th>Farmaco</th><th>Principio Activo</th><th>Accion de medicamento</th><th>Dosis recomendada</th><th>Efectos Secundarios</th><th>Contra indicaciones</th><th>Codigo de Barras</th></th></tr>";
+    while($row = mysqli_fetch_assoc($result)) {
+        echo "<tr><td>" . $row["ID"] . "</td>"."<td>" . $row["Nombre_Medicamento"] . "</td>"."<td>" . $row["Ingredientes"] . "</td>"."<td>" . $row["Tipo_medicamento"] . "</td>".
+        "<td>" . $row["Dosis_recomendada"] . "</td>"."<td>" . $row["EfectosSecundarios"] . "</td>"."<td>" . $row["Contraindicaciones"] .
+         "</td>"."<td>" .'<img src="../Barcode2.php?text='. $row["CodigodeBarrasMed"].'&size=50&orientation=horizontal&codetype=Code39&print=true">' . "</td>".
+         "</tr>";
+    }
+    echo "</table>";
+} else {
+    echo "No se encontraron Medicamentos.";
 }
-echo "</table>";
 
-// Cerrar conexión con la base de datos
+// Cerrar la conexión a la base de datos
 mysqli_close($conexion);
-
 ?>

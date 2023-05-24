@@ -73,27 +73,49 @@
   <title>Menú de usuarios</title>
 </head>
 
-<body>
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<body onload="mostrarNombreUsuario()">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-<!-- Logo Proyecto -->
-<a href="Menuinterno.html" class="brand-link">
-  <img src="../images/posible_logo.png" alt="FarmaLogo" class="brand-image img-circle elevation-3"
-    style="opacity: .8">
-  <span class="brand-text font-weight-light col-md-2">ADMINISTRADOR</span>
-</a>
+    <!-- Logo Proyecto -->
+    <a href="../paginas/MenuinternoUser.php" class="brand-link">
+      <img src="../images/posible_logo.png" alt="FarmaLogo" class="brand-image img-circle elevation-3"
+        style="opacity: .8">
+      <span class="brand-text font-weight-light col-md-2">PharmaApp</span>
+    </a>
 
-<!-- Sidebar -->
-<div class="sidebar">
-  <!-- Sidebar user panel (optional) -->
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-23 mb-3 d-flex">
+        <div class="image">
+          <img src="../images/usuario_login.png" class="img-circle elevation-2" alt="User Image">
+        </div>
 
+        <script>
+          function obtenerNombreUsuario() {
+            var nombreUsuario = "<?php session_start(); echo $_SESSION['username']; ?>"; // Obtener el nombre de usuario de la sesión en PHP
+            return nombreUsuario;
+          }
+          function mostrarNombreUsuario() {
+            var nombreUsuario = obtenerNombreUsuario();
+            var elementoNombreUsuario = document.getElementById("nombre-usuario");
+            elementoNombreUsuario.innerText = nombreUsuario;
+          }
+
+        </script>
+
+        <div class="info">
+          <a href="#" class="d-block col-md-2"> <span id="nombre-usuario"></span></a>
+
+        </div>
+      </div>
   <!-- Sidebar Menu -->
   <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
       <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
       <li class="nav-item menu-open">
-        <a href="../paginas/Menuinterno.html" class="nav-link active">
+        <a href="../paginas/MenuinternoUSER.php" class="nav-link active">
           <i class="nav-icon fas fa-tachometer-alt"></i>
           <p>
             Menu principal
@@ -102,35 +124,13 @@
         </a>
         <!--<ul class="nav nav-treeview">-->
       <li class="nav-item">
-        <a href="..\PHP\ListaMedicamentos.php" class="nav-link">
+        <a href="..\PHP\Usuarios/ListaMedicamentos.php" class="nav-link">
           <i class="far fa-circle nav-icon"></i>
           <p onclick="irdatabase()">Lista Medicamentos</p>
         </a>
       </li>
-      <li class="nav-item">
-        <a href="../paginas/Agregarmedicamento.html" class="nav-link">
-          <i class="nav-icon fas fa-th"></i>
-          <p>
-            Agregar Medicamento
-          </p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="..\PHP\ListaUsuarios.php" class="nav-link">
-          <i class="far fa-circle nav-icon"></i>
-          <p onclick="irdatabase()">Lista Usuarios</p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="../paginas/AgregarUsuarios.html" class="nav-link">
-          <i class="nav-icon fas fa-th"></i>
-          <p>
-            Agregar Usuario
-          </p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="../paginas/DniPaciente.html" class="nav-link">
+            <li class="nav-item">
+        <a href="../paginas/DniPaciente.php" class="nav-link">
           <i class="far fa-circle nav-icon"></i>
           <p onclick="irdatabase()">Paciente</p>
         </a>
@@ -144,17 +144,9 @@
       </li>
 
       <li class="nav-item">
-        <a href="..\PHP\Parafarmacia.php" class="nav-link">
+        <a href="..\PHP\Usuarios/Parafarmacia.php" class="nav-link">
           <i class="far fa-circle nav-icon"></i>
           <p>Listado de Parafarmacia</p>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a href="../paginas/AgregarmedicamentoPara.html" class="nav-link">
-          <i class="nav-icon fas fa-th"></i>
-          <p>
-            Agregar Medicamento Parafarmacia
-          </p>
         </a>
       </li>
           <li id="bottom">
@@ -286,7 +278,7 @@ if(isset($_POST['Añadir_MedicamentO'])){
           echo "<tr><td>" . $row["ID"] . "</td>"."<td>" . $row["Nombre"] . "</td>"."<td>" . $row["DNIPaciente"] . "</td>"."<td>" . $row["Nombre_Medicamento"] . "</td>".
           "<td>" . '<img src="Barcode2.php?text='.$row["CodigodeBarrasMed"].'&size=50&orientation=horizontal&codetype=Code39&print=true">' . "</td>"."<td>" . $row["Dosis_recomendada"] . "</td>"."<td>" .'<img src="Barcode2.php?text='.$row["CodigodeBarrasReceta"].'&size=50&orientation=horizontal&codetype=Code39&print=true">' . "</td>"."<td>"
   
-          .'<form method="POST" action="../PHP/Paciente.php?id='.$dni_paciente.'&id2='. $row["ID"] .'" >
+          .'<form method="POST" action="../PHP/PacienteUser.php?id='.$dni_paciente.'&id2='. $row["ID"] .'" >
             <input type="hidden" name="ID" value='.$row["ID"].'>
             <input type="hidden" name="Nombre" value='.$row["Nombre"].'>
             <input type="hidden" name="DNIPaciente" value='.$row["DNIPaciente"].'>
@@ -360,7 +352,7 @@ if(isset($_POST['Añadir_MedicamentO'])){
             echo "<tr><td>" . $row["ID"] . "</td>"."<td>" . $row["Nombre"] . "</td>"."<td>" . $row["DNIPaciente"] . "</td>"."<td>" . $row["Nombre_Medicamento"] . "</td>".
             "<td>" . '<img src="Barcode2.php?text='.$row["CodigodeBarrasMed"].'&size=50&orientation=horizontal&codetype=Code39&print=true">' . "</td>"."<td>" . $row["Dosis_recomendada"] . "</td>"."<td>" .'<img src="Barcode2.php?text='.$row["CodigodeBarrasReceta"].'&size=50&orientation=horizontal&codetype=Code39&print=true">' . "</td>"."<td>"
 
-            .'<form method="POST" action="../PHP/Paciente.php?id='.$dni_paciente.'&id2='. $row["ID"] .'"" >
+            .'<form method="POST" action="../PHP/PacienteUser.php?id='.$dni_paciente.'&id2='. $row["ID"] .'"" >
               <input type="hidden" name="ID" value='.$row["ID"].'>
               <input type="hidden" name="Nombre" value='.$row["Nombre"].'>
               <input type="hidden" name="DNIPaciente" value='.$row["DNIPaciente"].'>
@@ -425,7 +417,7 @@ if (mysqli_num_rows($result) > 0) {
         echo "<tr><td>" . $row["ID"] . "</td>"."<td>" . $row["Nombre"] . "</td>"."<td>" . $row["DNIPaciente"] . "</td>"."<td>" . $row["Nombre_Medicamento"] . "</td>".
         "<td>" . '<img src="Barcode2.php?text='.$row["CodigodeBarrasMed"].'&size=50&orientation=horizontal&codetype=Code39&print=true">' . "</td>"."<td>" . $row["Dosis_recomendada"] . "</td>"."<td>" .'<img src="Barcode2.php?text='.$row["CodigodeBarrasReceta"].'&size=50&orientation=horizontal&codetype=Code39&print=true">' . "</td>"."<td>"
 
-        .'<form method="POST" action="../PHP/Paciente.php?id='.$dni_paciente .'&id2='. $row["ID"] .'" >
+        .'<form method="POST" action="../PHP/PacienteUser.php?id='.$dni_paciente .'&id2='. $row["ID"] .'" >
           <input type="hidden" name="ID" value='.$row["ID"].'>
           <input type="hidden" name="Nombre" value='.$row["Nombre"].'>
           <input type="hidden" name="DNIPaciente" value='.$row["DNIPaciente"].'>

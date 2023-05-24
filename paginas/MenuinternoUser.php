@@ -74,26 +74,52 @@
   <title>Menu principal</title>
 </head>
 
-<body>
+
+
+<body onload="mostrarNombreUsuario()">
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
     <!-- Logo Proyecto -->
-    <a href="Menuinterno.html" class="brand-link">
+    <a href="../paginas/MenuinternoUser.php" class="brand-link">
       <img src="../images/posible_logo.png" alt="FarmaLogo" class="brand-image img-circle elevation-3"
         style="opacity: .8">
-      <span class="brand-text font-weight-light col-md-2">ADMINISTRADOR</span>
+      <span class="brand-text font-weight-light col-md-2">PharmaApp</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-23 mb-3 d-flex">
+        <div class="image">
+          <img src="../images/usuario_login.png" class="img-circle elevation-2" alt="User Image">
+        </div>
+
+        <script>
+          function obtenerNombreUsuario() {
+            var nombreUsuario = "<?php session_start(); echo $_SESSION['username']; ?>"; // Obtener el nombre de usuario de la sesión en PHP
+            return nombreUsuario;
+          }
+          function mostrarNombreUsuario() {
+            var nombreUsuario = obtenerNombreUsuario();
+            var elementoNombreUsuario = document.getElementById("nombre-usuario");
+            elementoNombreUsuario.innerText = nombreUsuario;
+          }
+
+        </script>
+
+        <div class="info">
+          <a href="#" class="d-block col-md-2"> <span id="nombre-usuario"></span></a>
+
+        </div>
+      </div>
+
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar-dark-primary flex-column" data-widget="treeview" role="menu">
           <!-- Add icons to the links using the .nav-icon class
                    with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="../paginas/Menuinterno.html" class="nav-link">
+            <a href="../paginas/MenuinternoUser.php" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Menu principal
@@ -102,52 +128,22 @@
             </a>
             <!--<ul class="nav nav-treeview">-->
           <li class="nav-item">
-            <a href="..\PHP\ListaMedicamentos.php" class="nav-link">
+            <a href="..\PHP\Usuarios/ListaMedicamentos.php" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p onclick="irdatabase()">Lista Medicamentos</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="../paginas/Agregarmedicamento.html" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Agregar Medicamento
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="..\PHP\ListaUsuarios.php" class="nav-link">
-              <i class="far fa-circle nav-icon"></i>
-              <p onclick="irdatabase()">Lista Usuarios</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="../paginas/AgregarUsuarios.html" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Agregar Usuario
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="../paginas/DniPaciente.html" class="nav-link">
+            <a href="../paginas/DniPacienteUSER.html" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p onclick="irdatabase()">Paciente</p>
             </a>
           </li>
 
           <li class="nav-item">
-            <a href="..\PHP\Parafarmacia.php" class="nav-link">
+            <a href="..\PHP\Usuarios/Parafarmacia.php" class="nav-link">
               <i class="far fa-circle nav-icon"></i>
               <p>Listado de Parafarmacia</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="../paginas/AgregarmedicamentoPara.html" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
-              <p>
-                Agregar Medicamento Parafarmacia
-              </p>
             </a>
           </li>
           <!--</ul>-->

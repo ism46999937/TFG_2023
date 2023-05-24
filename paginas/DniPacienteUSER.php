@@ -3,44 +3,10 @@
 
 <head>
     <link rel="shortcut icon" href="../images/posible_logo.png" />
-    <title>Agregar Medicamentos Parafarmacia</title>
+    <title>Consulta de recetas medicas</title>
     <link rel="stylesheet" href="../css/menu.css">
-    <style>
-        form {
-            width: 50%;
-            margin: auto;
-        }
+    <!DOCTYPE html>
 
-        label {
-            display: inline-block;
-            width: 150px;
-            margin-bottom: 10px;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="password"] {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-bottom: 10px;
-        }
-
-        input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-    </style>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -111,28 +77,49 @@
     <link rel="stylesheet" href="../bootstrap-4.0.0-dist/css/bootstrap.min.css">
     <title>Menú de usuarios</title>
 </head>
+<body onload="mostrarNombreUsuario()">
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
 
-<body>
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Logo Proyecto -->
+    <a href="../paginas/MenuinternoUser.php" class="brand-link">
+      <img src="../images/posible_logo.png" alt="FarmaLogo" class="brand-image img-circle elevation-3"
+        style="opacity: .8">
+      <span class="brand-text font-weight-light col-md-2">PharmaApp</span>
+    </a>
 
-        <!-- Logo Proyecto -->
-        <a href="Menuinterno.html" class="brand-link">
-            <img src="../images/posible_logo.png" alt="FarmaLogo" class="brand-image img-circle elevation-3"
-                style="opacity: .8">
-            <span class="brand-text font-weight-light col-md-2">ADMINISTRADOR</span>
-        </a>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-23 mb-3 d-flex">
+        <div class="image">
+          <img src="../images/usuario_login.png" class="img-circle elevation-2" alt="User Image">
+        </div>
 
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <!-- Sidebar user panel (optional) -->
+        <script>
+          function obtenerNombreUsuario() {
+            var nombreUsuario = "<?php session_start(); echo $_SESSION['username']; ?>"; // Obtener el nombre de usuario de la sesión en PHP
+            return nombreUsuario;
+          }
+          function mostrarNombreUsuario() {
+            var nombreUsuario = obtenerNombreUsuario();
+            var elementoNombreUsuario = document.getElementById("nombre-usuario");
+            elementoNombreUsuario.innerText = nombreUsuario;
+          }
 
+        </script>
+
+        <div class="info">
+          <a href="#" class="d-block col-md-2"> <span id="nombre-usuario"></span></a>
+
+        </div>
+      </div>
             <!-- Sidebar Menu -->
             <nav class="mt-2">
                 <ul class="nav nav-pills nav-sidebar-dark-primary flex-column" data-widget="treeview" role="menu">
                     <!-- Add icons to the links using the .nav-icon class
                        with font-awesome or any other icon font library -->
                     <li class="nav-item menu-open">
-                        <a href="../paginas/Menuinterno.html" class="nav-link">
+                        <a href="../paginas/MenuinternoUser.php" class="nav-link">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
                                 Menu principal
@@ -141,52 +128,22 @@
                         </a>
                         <!--<ul class="nav nav-treeview">-->
                     <li class="nav-item">
-                        <a href="..\PHP\ListaMedicamentos.php" class="nav-link">
+                        <a href="..\PHP\Usuarios/ListaMedicamentos.php" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p onclick="irdatabase()">Lista Medicamentos</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="../paginas/Agregarmedicamento.html" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Agregar Medicamento
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="..\PHP\ListaUsuarios.php" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p onclick="irdatabase()">Lista Usuarios</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../paginas/AgregarUsuarios.html" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Agregar Usuario
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../paginas/DniPaciente.html" class="nav-link">
+                        <a href="../paginas/DniPacienteUSER.php" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p onclick="irdatabase()">Paciente</p>
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="..\PHP\Parafarmacia.php" class="nav-link">
+                        <a href="..\PHP\Usuarios/Parafarmacia.php" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Listado de Parafarmacia</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="../paginas/AgregarmedicamentoPara.html" class="nav-link">
-                            <i class="nav-icon fas fa-th"></i>
-                            <p>
-                                Agregar Medicamento Parafarmacia
-                            </p>
                         </a>
                     </li>
 
@@ -226,6 +183,8 @@
 <script src="../plugins/daterangepicker/daterangepicker.js"></script>
 <!-- Tempusdominus Bootstrap 4 -->
 <script src="../plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="../plugins/summernote/summernote-bs4.min.js"></script>
 <!-- overlayScrollbars -->
 <script src="../plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
@@ -234,8 +193,6 @@
 <script src="../../AdminLTE-3.2.0/dist/js/demo.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="../../AdminLTE-3.2.0/dist/js/pages/dashboard.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/css/adminlte.min.css">
-<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.1/dist/js/adminlte.min.js"></script>
 <style>
     #bottom {
         margin-top: 50%;
@@ -244,29 +201,12 @@
     }
 </style>
 
-</html>
 <div class="container">
-    <h1>Agregar medicamento Parafarmacia</h1>
-    <form method="post" action="../PHP/AgregarMedicamentos.php">
-        <label for="nombre_medicamento">Nombre del medicamento:</label>
-        <input type="text" id="Nombre" name="nombre_medicamento" required>
-        <br>
-        <label for="Funcion">Funcion :</label>
-        <input type="text" id="Funcion" name="Funcion" required>
-        <br>
-        <label for="dosis_recomendada">Dosis recomendada:</label>
-        <input type="text" id="dosis_recomendada" name="dosis_recomendada" required>
-        <br>
-        <label for="EfectosSecundarios">Efectos secundarios:</label>
-        <input type="text" id="efectos_secundarios" name="EfectosSecundarios" required>
-        <br>
-        <label for="Contraindicaciones">Contraindicaciones:</label>
-        <input type="text" id="contraindicaciones" name="Contraindicaciones" required>
-        <br>
-        <label for="CodigodeBarrasPar">Codigo de barras:</label>
-        <input type="number" id="CodigodeBarrasPar" name="CodigodeBarrasPar" required>
-        <br>
-        <button type="submit" class="btn-primary btn-lg btn-block">Agregar medicamento</button>
+    <h1>Consulta de recetas medicas</h1>
+    <form method="post" action="../PHP/PacienteUser.php">
+        <label for="dni_paciente">Ingrese el DNI del paciente:</label>
+        <input type="text" id="dni_paciente" name="dni_paciente" required>
+        <button type="submit">Consultar</button>
     </form>
 </div>
 </body>

@@ -22,7 +22,7 @@ if (isset($_POST['username'])) {
     if (mysqli_num_rows($resultado) == 1) {
         // Inicio de sesión exitoso
         $_SESSION['username'] = $username;
-        header('Location: ../paginas/Menuinterno.html');
+        header('Location: ../paginas/validacion.php');
     } else {
         // Error de inicio de sesión
         echo "Usuario o contraseña incorrectos.";
